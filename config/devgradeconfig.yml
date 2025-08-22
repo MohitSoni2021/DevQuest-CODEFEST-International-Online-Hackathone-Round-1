@@ -1,0 +1,8 @@
+version: 1.0
+
+template_name: inventory-master-template
+
+stack: javascript
+
+test_files:
+  - "**/*.test.js"

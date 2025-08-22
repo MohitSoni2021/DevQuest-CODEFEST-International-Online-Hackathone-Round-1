@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - InventoryMaster</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="styles/global.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="dashboard.html">InventoryMaster</a>
+            <div class="navbar-nav ms-auto">
+                <span class="navbar-text me-3" id="userGreeting">Welcome!</span>
+                <button class="btn btn-outline-light btn-sm" id="logoutBtn">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <!-- Summary Cards -->
+        <div class="row mb-4">
+            <div class="col-md-3">
+                <div class="card bg-primary text-white">
+                    <div class="card-body">
+                        <h5>Total Products</h5>
+                        <h2 id="totalProducts">-</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card bg-warning text-white">
+                    <div class="card-body">
+                        <h5>Low Stock Items</h5>
+                        <h2 id="lowStockItems">-</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card bg-success text-white">
+                    <div class="card-body">
+                        <h5>Total Stock Value</h5>
+                        <h2 id="totalStockValue">$-</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card bg-info text-white">
+                    <div class="card-body">
+                        <h5>Categories</h5>
+                        <h2 id="totalCategories">-</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Add New Product</h5>
+                    </div>
+                    <div class="card-body">
+                        <form id="productForm">
+                            <div class="mb-3">
+                                <label for="productName" class="form-label">Product Name</label>
+                                <input type="text" class="form-control" id="productName" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="productSku" class="form-label">SKU</label>
+                                <input type="text" class="form-control" id="productSku" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="productDescription" class="form-label">Description</label>
+                                <textarea class="form-control" id="productDescription" rows="2"></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="productPrice" class="form-label">Price ($)</label>
+                                <input type="number" step="0.01" class="form-control" id="productPrice" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="productStock" class="form-label">Stock Quantity</label>
+                                <input type="number" class="form-control" id="productStock" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="productReorderLevel" class="form-label">Reorder Level</label>
+                                <input type="number" class="form-control" id="productReorderLevel" value="10">
+                            </div>
+                            <div class="mb-3">
+                                <label for="productCategory" class="form-label">Category</label>
+                                <select class="form-select" id="productCategory">
+                                    <option value="general" selected>General</option>
+                                    <option value="electronics">Electronics</option>
+                                    <option value="clothing">Clothing</option>
+                                    <option value="books">Books</option>
+                                    <option value="food">Food</option>
+                                    <option value="home">Home</option>
+                                    <option value="sports">Sports</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">Add Product</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5>My Products</h5>
+                        <div>
+                            <button id="viewReorderProducts" class="btn btn-sm btn-warning me-2">View Reorder List</button>
+                            <button id="refreshProducts" class="btn btn-sm btn-outline-primary">Refresh</button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div id="productsContainer">
+                            <div class="text-center">
+                                <div class="spinner-border" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Edit Modal -->
+    <div class="modal fade" id="editProductModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit Product</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="editProductForm">
+                        <input type="hidden" id="editProductId">
+                        <div class="mb-3">
+                            <label for="editProductName" class="form-label">Product Name</label>
+                            <input type="text" class="form-control" id="editProductName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editProductSku" class="form-label">SKU</label>
+                            <input type="text" class="form-control" id="editProductSku" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editProductDescription" class="form-label">Description</label>
+                            <textarea class="form-control" id="editProductDescription" rows="2"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editProductPrice" class="form-label">Price ($)</label>
+                            <input type="number" step="0.01" class="form-control" id="editProductPrice" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editProductStock" class="form-label">Stock Quantity</label>
+                            <input type="number" class="form-control" id="editProductStock" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editProductReorderLevel" class="form-label">Reorder Level</label>
+                            <input type="number" class="form-control" id="editProductReorderLevel" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editProductCategory" class="form-label">Category</label>
+                            <select class="form-select" id="editProductCategory">
+                                <option value="general">General</option>
+                                <option value="electronics">Electronics</option>
+                                <option value="clothing">Clothing</option>
+                                <option value="books">Books</option>
+                                <option value="food">Food</option>
+                                <option value="home">Home</option>
+                                <option value="sports">Sports</option>
+                            </select>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="editProductActive">
+                            <label class="form-check-label" for="editProductActive">
+                                Active Product
+                            </label>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="saveProductBtn">Save Changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stock Update Modal -->
+    <div class="modal fade" id="stockUpdateModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Update Stock</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="stockUpdateForm">
+                        <input type="hidden" id="stockUpdateProductId">
+                        <div class="mb-3">
+                            <label class="form-label">Product: <span id="stockUpdateProductName"></span></label>
+                            <p class="text-muted">Current Stock: <span id="stockUpdateCurrentStock"></span> units</p>
+                        </div>
+                        <div class="mb-3">
+                            <label for="stockQuantity" class="form-label">Quantity</label>
+                            <input type="number" class="form-control" id="stockQuantity" min="1" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="stockOperation" class="form-label">Operation</label>
+                            <select class="form-select" id="stockOperation" required>
+                                <option value="add">Add Stock (Receiving)</option>
+                                <option value="subtract">Reduce Stock (Sale/Damage)</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="updateStockBtn">Update Stock</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="message" class="toast-container position-fixed top-0 end-0 p-3"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="module" src="js/dashboard.js"></script>
+</body>
+</html> 

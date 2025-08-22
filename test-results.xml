@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites name="vitest tests" tests="20" failures="0" errors="0" time="2.914000717">
+    <testsuite name="tests/_sanity.test.js" timestamp="2025-08-21T16:02:58.478Z" hostname="mohit-LOQ-15IAX9" tests="12" failures="0" errors="0" skipped="0" time="0.582975001">
+        <testcase classname="tests/_sanity.test.js" name="Environment Sanity Tests &gt; Server should start and respond to health check" time="0.001306236">
+        </testcase>
+        <testcase classname="tests/_sanity.test.js" name="Environment Sanity Tests &gt; Database connection should work" time="0.003925974">
+        </testcase>
+        <testcase classname="tests/_sanity.test.js" name="Environment Sanity Tests &gt; Database file must exist with migrations and seeds applied" time="0.000733332">
+            <system-out>
+
+
+======= IMPORTANT NOTICE =======
+These tests now use the actual SQLite database (main.sqlite3).
+Tests will FAIL if you haven&apos;t run:
+  npm run migrate
+  npm run seed
+================================
+
+
+
+            </system-out>
+        </testcase>
+        <testcase classname="tests/_sanity.test.js" name="Environment Sanity Tests &gt; Authentication endpoints should exist" time="0.071701832">
+        </testcase>
+        <testcase classname="tests/_sanity.test.js" name="Environment Sanity Tests &gt; Product endpoints should exist" time="0.003459378">
+        </testcase>
+        <testcase classname="tests/_sanity.test.js" name="Environment Sanity Tests &gt; Database tables should exist" time="0.002672702">
+        </testcase>
+        <testcase classname="tests/_sanity.test.js" name="Environment Sanity Tests &gt; User registration should work with valid data" time="0.104640034">
+        </testcase>
+        <testcase classname="tests/_sanity.test.js" name="Environment Sanity Tests &gt; User login should work with valid credentials" time="0.193233832">
+        </testcase>
+        <testcase classname="tests/_sanity.test.js" name="Environment Sanity Tests &gt; Protected routes should require authentication" time="0.00300998">
+        </testcase>
+        <testcase classname="tests/_sanity.test.js" name="Environment Sanity Tests &gt; Seed data should be populated" time="0.004314908">
+        </testcase>
+        <testcase classname="tests/_sanity.test.js" name="Environment Sanity Tests &gt; Can authenticate with seed user credentials" time="0.091696986">
+        </testcase>
+        <testcase classname="tests/_sanity.test.js" name="Environment Sanity Tests &gt; Can retrieve products when authenticated" time="0.098992543">
+        </testcase>
+    </testsuite>
+    <testsuite name="tests/challenge0.test.js" timestamp="2025-08-21T16:02:58.482Z" hostname="mohit-LOQ-15IAX9" tests="8" failures="0" errors="0" skipped="0" time="2.331025716">
+        <testcase classname="tests/challenge0.test.js" name="InventoryMaster Challenge Tests &gt; Challenge a - Homepage title should be &apos;InventoryMaster&apos;" time="0.102825717">
+        </testcase>
+        <testcase classname="tests/challenge0.test.js" name="InventoryMaster Challenge Tests &gt; Challenge b - Signup and login links should be properly configured" time="0.025298592">
+        </testcase>
+        <testcase classname="tests/challenge0.test.js" name="InventoryMaster Challenge Tests &gt; Challenge c - Product model should enforce SKU uniqueness validation" time="0.279886392">
+        </testcase>
+        <testcase classname="tests/challenge0.test.js" name="InventoryMaster Challenge Tests &gt; Challenge d - Stock update operation should maintain data integrity" time="0.134817784">
+        </testcase>
+        <testcase classname="tests/challenge0.test.js" name="InventoryMaster Challenge Tests &gt; Challenge e - Reorder level detection should work correctly" time="0.337257196">
+        </testcase>
+        <testcase classname="tests/challenge0.test.js" name="InventoryMaster Challenge Tests &gt; Challenge f - User can create and manage products with comprehensive validation" time="0.26025021">
+        </testcase>
+        <testcase classname="tests/challenge0.test.js" name="InventoryMaster Challenge Tests &gt; Challenge g - Password complexity validation for user signup" time="0.109611131">
+        </testcase>
+        <testcase classname="tests/challenge0.test.js" name="InventoryMaster Challenge Tests &gt; Challenge h - Smart Security Question System" time="1.075254429">
+        </testcase>
+    </testsuite>
+</testsuites>

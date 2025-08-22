@@ -1,0 +1,125 @@
+@import url('../../node_modules/bootstrap/dist/css/bootstrap.min.css');
+@import url('../../node_modules/boxicons/css/boxicons.min.css');
+@import url('../styles/fonts.css');
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.hero-section {
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+}
+
+.task-preview .card {
+    max-width: 350px;
+    margin: 0 auto;
+}
+
+.task-item {
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.task-item:last-child {
+    border-bottom: none;
+}
+
+.features-section {
+    background-color: #f8f9fa;
+}
+
+.feature-icon {
+    color: #0d6efd;
+}
+
+.btn-group-vertical .btn {
+    border-radius: 0.25rem !important;
+    margin-bottom: 0.25rem;
+}
+
+.btn-group-vertical .btn:last-child {
+    margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+    .hero-section {
+        text-align: center;
+    }
+    
+    .task-preview {
+        margin-top: 2rem;
+    }
+}
+
+.header {
+    background-color: #1a041a53;
+    padding-left: 5%;
+    padding-right: 5%;
+    display: block;
+    margin-bottom: 0 !important;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    backdrop-filter: blur(50px);
+}
+
+.dropdown-toggle::after {
+    display: none;
+}
+
+.dropdown-menu {
+    background-color: #1a041a;
+    color: #fff;
+}
+
+.dropdown-item {
+    color: #fff;
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus {
+    background-color: #ffffff96;
+}
+.logo-text {
+    text-decoration: none;
+    color: #ff615a;
+}
+
+.custom-search-bar {
+    height: 35px;
+    background-color: transparent;
+    border-color: #ff625a71;
+}
+
+.custom-search-bar:focus {
+    outline: none;
+    box-shadow: none;
+    border-color: #ff625a71;
+    background-color: transparent;
+    color: #ffffff;
+}
+
+.prf-icon{
+    color: #ff625ac9;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+::placeholder {
+    color: #999 !important;
+    opacity: 1;
+}
+
+.col_red{
+    text-decoration: none;
+    color: #ff625a;
+
+}
+
+
